@@ -9,9 +9,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +33,7 @@ public class MainActivity extends Activity{
 	private String currentUrl;
 	private String currentTitle;
 	private String bookmarkFileName = "bookmark.txt";
-	
+		
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);   //既存のコード
@@ -82,13 +84,16 @@ public class MainActivity extends Activity{
 		};
 		webView.setWebChromeClient(chrome);
 		
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+		Boolean bJavascripOn = pref.getBoolean("javascriptOn",true);
+		
 		WebSettings settings = webView.getSettings();
 		//settings.setSupportMultipleWindows(true);  //Googleニュースのリンク
 		settings.setLoadsImagesAutomatically(true);
 		//settings.setSupportZoom(true);
 		//settings.setLightTouchEnabled(true);
 		//settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
-		settings.setJavaScriptEnabled(true);  //javascript有効化
+		settings.setJavaScriptEnabled(bJavascripOn);  //javascript有効化
 		
 		webView.loadUrl("http://www.nikkei.com/");
 	}
@@ -109,7 +114,7 @@ public class MainActivity extends Activity{
 		private static final int NIKKEI_NEWS_MENU_ID = 1;
 		private static final int GOOGLE_NEWS_MENU_ID = 2;
 		private static final int HOTENTRY_MENU_ID = 3;
-		private static final int GOOGLE_MENU_ID = 4;
+	private static final int GOOGLE_MENU_ID = 4;
 	private static final int SUB_MENU_BLOG = 5;
 		private static final int ANDROID_DEV_BLOG_SEARCH = 6;
 		private static final int NEXUS7_BLOG_SEARCH = 7;
@@ -117,7 +122,8 @@ public class MainActivity extends Activity{
 	private static final int SUB_MENU_BOOKMARK = 9;
 		private static final int ADD_BOOKMARK_MENU_ID = 10;
 		private static final int VIEW_BOOKMARK_MENU_ID = 11;
-	private static final int FINISH_MENU_ID = 12;
+	private static final int SETTING_MENU_ID = 12;
+	private static final int FINISH_MENU_ID = 13;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,6 +164,9 @@ public class MainActivity extends Activity{
 		// サブメニューにメニューアイテムを追加する
 		subMenuBookmark.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 0, R.string.add_bookmark);
 		subMenuBookmark.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 1, R.string.view_bookmark);
+		
+		// 設定 メニュー・アイテム
+		menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
 		
 		// 終了 　メニュー・アイテム
 		menu.add(0, FINISH_MENU_ID, 8, R.string.finish);
@@ -249,6 +258,10 @@ public class MainActivity extends Activity{
 			Intent intent =new Intent(this, BookmarkActivity.class);
 			int requestCode = 123;
 			startActivityForResult(intent, requestCode);
+			return true;
+		case SETTING_MENU_ID :
+			//設定画面を表示
+			startActivity(new Intent(getApplicationContext(), SettingActivity.class));
 			return true;
 		case FINISH_MENU_ID :
 			//終了ボタンが押されたとき
