@@ -88,14 +88,22 @@ public class MainActivity extends Activity{
 		Boolean bJavascripOn = pref.getBoolean("javascriptOn",true);
 		
 		WebSettings settings = webView.getSettings();
-		//settings.setSupportMultipleWindows(true);  //Googleニュースのリンク
+		settings.setSupportMultipleWindows(true);  //Googleニュースのリンク
 		settings.setLoadsImagesAutomatically(true);
 		//settings.setSupportZoom(true);
 		//settings.setLightTouchEnabled(true);
 		//settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
 		settings.setJavaScriptEnabled(bJavascripOn);  //javascript有効化
 		
-		webView.loadUrl("http://www.nikkei.com/");
+		Bundle extras=getIntent().getExtras();
+		if (extras!=null) {
+			String sKey1 = extras.getString("url");
+			webView.loadUrl(sKey1);
+		}
+		else
+		{
+			webView.loadUrl("http://www.nikkei.com/");
+		}
 	}
 	
 	//戻るボタンで前のページに戻る
@@ -178,16 +186,24 @@ public class MainActivity extends Activity{
 	public boolean onMenuItemSelected(int featureId,MenuItem item){
 		switch (item.getItemId()) {
 	case NIKKEI_NEWS_MENU_ID :
-		webView.loadUrl("http://www.nikkei.com/");
+			Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
+			intentNew.putExtra("url", "http://www.nikkei.com/");
+	       startActivity(intentNew);
 			return true;
 		case GOOGLE_NEWS_MENU_ID :
-			webView.loadUrl("http://news.google.co.jp/");
+			intentNew = new Intent(getApplicationContext(), MainActivity.class);
+			intentNew.putExtra("url", "http://news.google.co.jp/");
+	       startActivity(intentNew);
 			return true;
 		case HOTENTRY_MENU_ID :
-			webView.loadUrl("http://slx.heteml.jp/hatebu/sp");
+			intentNew = new Intent(getApplicationContext(), MainActivity.class);
+			intentNew.putExtra("url", "http://slx.heteml.jp/hatebu/sp");
+	       startActivity(intentNew);
 			return true;
 		case GOOGLE_MENU_ID :
-			webView.loadUrl("http://www.google.co.jp");
+			intentNew = new Intent(getApplicationContext(), MainActivity.class);
+			intentNew.putExtra("url", "http://www.google.co.jp");
+	       startActivity(intentNew);
 			return true;
 		case ANDROID_DEV_BLOG_SEARCH :
 			webView.loadUrl("https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687");
@@ -305,5 +321,10 @@ public class MainActivity extends Activity{
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
+	}
+	
+	public void showToast(String Message)
+	{
+		Toast.makeText(getApplicationContext(),Message, Toast.LENGTH_LONG).show();	
 	}
 }
