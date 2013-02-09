@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -66,7 +67,7 @@ public class MainActivity extends Activity{
 			}
 		});
 		
-		WebChromeClient chrome = new WebChromeClient() {
+		webView.setWebChromeClient(new WebChromeClient() {
 			public void onProgressChanged(WebView view, int progress) {
 				//プログレスバー表示を更新
 				ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
@@ -81,14 +82,13 @@ public class MainActivity extends Activity{
 				}
 				System.out.println("onProgressChanged");
 			}
-		};
-		webView.setWebChromeClient(chrome);
+		});
 		
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 		Boolean bJavascripOn = pref.getBoolean("javascriptOn",true);
-		
+
 		WebSettings settings = webView.getSettings();
-		settings.setSupportMultipleWindows(true);  //Googleニュースのリンク
+		settings.setSupportMultipleWindows(false);  //trueではGoogleニュースのリンクが開けない
 		settings.setLoadsImagesAutomatically(true);
 		//settings.setSupportZoom(true);
 		//settings.setLightTouchEnabled(true);
