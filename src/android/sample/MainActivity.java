@@ -139,54 +139,55 @@ public class MainActivity extends Activity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
-		// ニュースはサブメニューにする
+		// ニュースサブメニュー
 		SubMenu subMenuNews;
 		subMenuNews = menu.addSubMenu(Menu.NONE, SUB_MENU_NEWS, 0, R.string.subMenu_news);
 		subMenuNews.setIcon(android.R.drawable.ic_menu_directions);
 		
-			// 日経 メニュー・アイテム
+			// 日経
 			subMenuNews.add(0, NIKKEI_NEWS_MENU_ID, 0, R.string.nikkei);
-			// Googleニュース メニュー・アイテム
+			// Googleニュース
 			subMenuNews.add(0, GOOGLE_NEWS_MENU_ID, 1, R.string.google_news);
-			// 人気エントリー メニュー・アイテム
+			// 人気エントリー
 			subMenuNews.add(0, HOTENTRY_MENU_ID, 2, R.string.hotentry);
 			
-		// Google メニュー・アイテム
+		// Google
 		menu.add(0, GOOGLE_MENU_ID, 1, R.string.google);
 		
-		// ブログ検索はサブメニューにする
+		// ブログ検索サブメニュー
 		SubMenu subMenuBlog;
 		subMenuBlog = menu.addSubMenu(Menu.NONE, SUB_MENU_BLOG, 2, R.string.subMenu_blog_search);
 		subMenuBlog.setIcon(android.R.drawable.ic_menu_directions);
 		
-			// android 開発 ブログ検索
+			// android 開発
 			subMenuBlog.add(0, ANDROID_DEV_BLOG_SEARCH, 0, R.string.android_dev_blog_seach);
-			// Nexus7 ブログ検索
+			// Nexus7
 			subMenuBlog.add(0, NEXUS7_BLOG_SEARCH, 0, R.string.nexus7_blog_seach);
-			// Android ブログ検索
+			// Android
 			subMenuBlog.add(0, ANDROID_BLOG_SEARCH, 0, R.string.android_blog_seach);
 
-		// マニュアルはサブメニューにする
+		// マニュアルサブメニュー
 		SubMenu subMenuManual;
 		subMenuManual = menu.addSubMenu(Menu.NONE, SUB_MENU_MANUAL, 3, R.string.subMenu_manual);
 		subMenuManual.setIcon(android.R.drawable.ic_menu_directions);
 
 			// Gitマニュアル
-		subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
+			subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
 		
-		// ブックマークはサブメニューにする
+		// ブックマークサブメニュー
 		SubMenu subMenuBookmark;
 		subMenuBookmark = menu.addSubMenu(Menu.NONE, SUB_MENU_BOOKMARK, 4, R.string.subMenu_bookmark);
 		subMenuBookmark.setIcon(android.R.drawable.ic_menu_directions);
 		
-			// サブメニューにメニューアイテムを追加する
+			//追加
 			subMenuBookmark.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 0, R.string.add_bookmark);
+			//参照
 			subMenuBookmark.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 1, R.string.view_bookmark);
 		
-		// 設定 メニュー・アイテム
+		// 設定
 		menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
 		
-		// 終了 　メニュー・アイテム
+		// 終了
 		menu.add(0, FINISH_MENU_ID, 8, R.string.finish);
 	
 		return true;
@@ -195,25 +196,25 @@ public class MainActivity extends Activity{
 	// メニューを選択した時の処理
 	public boolean onMenuItemSelected(int featureId,MenuItem item){
 		switch (item.getItemId()) {
-	case NIKKEI_NEWS_MENU_ID :
+		case NIKKEI_NEWS_MENU_ID :
 			Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
 			intentNew.putExtra("url", "http://www.nikkei.com/");
-	       startActivity(intentNew);
+			startActivity(intentNew);
 			return true;
 		case GOOGLE_NEWS_MENU_ID :
 			intentNew = new Intent(getApplicationContext(), MainActivity.class);
 			intentNew.putExtra("url", "http://news.google.co.jp/");
-	       startActivity(intentNew);
+			startActivity(intentNew);
 			return true;
 		case HOTENTRY_MENU_ID :
 			intentNew = new Intent(getApplicationContext(), MainActivity.class);
 			intentNew.putExtra("url", "http://slx.heteml.jp/hatebu/sp");
-	       startActivity(intentNew);
+			startActivity(intentNew);
 			return true;
 		case GOOGLE_MENU_ID :
 			intentNew = new Intent(getApplicationContext(), MainActivity.class);
 			intentNew.putExtra("url", "http://www.google.co.jp");
-	       startActivity(intentNew);
+			startActivity(intentNew);
 			return true;
 		case ANDROID_DEV_BLOG_SEARCH :
 			webView.loadUrl("https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687");
@@ -297,7 +298,7 @@ public class MainActivity extends Activity{
 			webView.clearCache(true); // キャッシュのクリア
 			webView.clearHistory(); // 履歴のクリア
 			finish();  //終了
-			   return true;
+			return true;
 		default :
 			break;
 		}
@@ -327,7 +328,6 @@ public class MainActivity extends Activity{
 		default:
 			break;
 		}
-		
 	}
 	
 	// 画面の向きを切り替えた時に画面を保持する
@@ -336,6 +336,7 @@ public class MainActivity extends Activity{
 		super.onConfigurationChanged(newConfig);
 	}
 	
+	// トースト表示
 	public void showToast(String Message)
 	{
 		Toast.makeText(getApplicationContext(),Message, Toast.LENGTH_LONG).show();	
