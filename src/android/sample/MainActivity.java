@@ -127,11 +127,13 @@ public class MainActivity extends Activity{
 		private static final int ANDROID_DEV_BLOG_SEARCH = 6;
 		private static final int NEXUS7_BLOG_SEARCH = 7;
 		private static final int ANDROID_BLOG_SEARCH = 8;
-	private static final int SUB_MENU_BOOKMARK = 9;
-		private static final int ADD_BOOKMARK_MENU_ID = 10;
-		private static final int VIEW_BOOKMARK_MENU_ID = 11;
-	private static final int SETTING_MENU_ID = 12;
-	private static final int FINISH_MENU_ID = 13;
+	private static final int SUB_MENU_MANUAL = 9;
+		private static final int GIT_MANUAL = 10;
+	private static final int SUB_MENU_BOOKMARK = 11;
+		private static final int ADD_BOOKMARK_MENU_ID = 12;
+		private static final int VIEW_BOOKMARK_MENU_ID = 13;
+	private static final int SETTING_MENU_ID = 14;
+	private static final int FINISH_MENU_ID = 15;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -163,15 +165,23 @@ public class MainActivity extends Activity{
 			subMenuBlog.add(0, NEXUS7_BLOG_SEARCH, 0, R.string.nexus7_blog_seach);
 			// Android ブログ検索
 			subMenuBlog.add(0, ANDROID_BLOG_SEARCH, 0, R.string.android_blog_seach);
-			
+
+		// マニュアルはサブメニューにする
+		SubMenu subMenuManual;
+		subMenuManual = menu.addSubMenu(Menu.NONE, SUB_MENU_MANUAL, 3, R.string.subMenu_manual);
+		subMenuManual.setIcon(android.R.drawable.ic_menu_directions);
+
+			// Gitマニュアル
+		subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
+		
 		// ブックマークはサブメニューにする
 		SubMenu subMenuBookmark;
-		subMenuBookmark = menu.addSubMenu(Menu.NONE, SUB_MENU_BOOKMARK, 3, R.string.subMenu_bookmark);
+		subMenuBookmark = menu.addSubMenu(Menu.NONE, SUB_MENU_BOOKMARK, 4, R.string.subMenu_bookmark);
 		subMenuBookmark.setIcon(android.R.drawable.ic_menu_directions);
 		
-		// サブメニューにメニューアイテムを追加する
-		subMenuBookmark.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 0, R.string.add_bookmark);
-		subMenuBookmark.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 1, R.string.view_bookmark);
+			// サブメニューにメニューアイテムを追加する
+			subMenuBookmark.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 0, R.string.add_bookmark);
+			subMenuBookmark.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 1, R.string.view_bookmark);
 		
 		// 設定 メニュー・アイテム
 		menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
@@ -213,7 +223,10 @@ public class MainActivity extends Activity{
 			return true;
 		case ANDROID_BLOG_SEARCH :
 			webView.loadUrl("https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&tbo=d&tbm=blg&sclient=psy-ab&q=android&oq=android&gs_l=serp.3..0l8.414037.415041.4.415245.7.5.0.2.2.1.605.1488.1j1j1j0j1j1.5.0...0.0...1c.1j4.ZkHRPiMpKKI&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=623");	
-		return true;
+			return true;
+		case GIT_MANUAL :
+			webView.loadUrl("http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html");	
+			return true;
 		case ADD_BOOKMARK_MENU_ID :
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 			// アラートダイアログのタイトルを設定します

@@ -14,6 +14,8 @@
     <string name="android_dev_blog_seach">Android開発</string>
     <string name="nexus7_blog_seach">Nexus7</string>
     <string name="android_blog_seach">Android</string>
+    <string name="subMenu_manual">マニュアル...</string>
+    <string name="git_manual">Gitマニュアル</string>
     <string name="subMenu_bookmark">ブックマーク...</string>
     <string name="add_bookmark">ブックマーク追加</string>
     <string name="view_bookmark">ブックマーク参照</string>
