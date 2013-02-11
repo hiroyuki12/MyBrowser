@@ -12,8 +12,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -49,9 +49,8 @@ public class MainActivity extends Activity{
 			public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
 				//プログレスバーを表示(10%)
 				ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-				progressBar.setVisibility(View.VISIBLE);
 				progressBar.setProgress(10);
-				System.out.println("called onPageStarted");
+				progressBar.setVisibility(View.VISIBLE);
 			}
 			
 			@Override
@@ -63,7 +62,21 @@ public class MainActivity extends Activity{
 				//ページのURL・タイトルを取得
 				currentUrl = url;
 				currentTitle = view.getTitle();
-				System.out.println("called onPageFinished");
+			}
+			
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView webView, String url)
+			{
+				//googlePlayを別アプリで開く
+				if(url.startsWith("https://play.google.com/"))
+				{
+					Uri uri = Uri.parse(url);
+					Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+					startActivity(intent);
+					return true;
+				}
+		        
+				return false;
 			}
 		});
 		
@@ -80,7 +93,6 @@ public class MainActivity extends Activity{
 					progressBar.setVisibility(View.VISIBLE);
 					progressBar.setProgress(progress);
 				}
-				System.out.println("onProgressChanged");
 			}
 		});
 		
