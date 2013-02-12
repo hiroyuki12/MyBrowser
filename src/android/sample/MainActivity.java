@@ -124,6 +124,11 @@ public class MainActivity extends Activity{
 			String sKey1 = extras.getString("url");
 			webView.loadUrl(sKey1);
 		}
+		else if (Intent.ACTION_VIEW.equals(getIntent().getAction()) ){
+		    //暗黙的インテント経由で起動された時の処理
+			String url = getIntent().getDataString();
+			webView.loadUrl(url);
+		}
 		else
 		{
 			webView.loadUrl("http://www.nikkei.com/");
