@@ -98,14 +98,18 @@ public class MainActivity extends Activity{
 		});
 
 		webView.setOnLongClickListener(new OnLongClickListener() {
-		    @Override
-		    public boolean onLongClick(View v) {
-		        WebView webView = (WebView) v;
-		        WebView.HitTestResult hr = webView.getHitTestResult();
-		        String url = hr.getExtra();
-		        showToast(url);
-		        return false;
-		    }
+			@Override
+			public boolean onLongClick(View v) {
+				WebView webView = (WebView) v;
+				WebView.HitTestResult hr = webView.getHitTestResult();
+				String url = hr.getExtra();
+				
+				Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
+				intentNew.putExtra("url", url);
+				startActivity(intentNew);
+				
+				return false;
+			}
 		});
 		
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
