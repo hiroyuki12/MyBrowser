@@ -235,11 +235,7 @@ public class MainActivity extends Activity{
 			webView.loadUrl("http://slx.heteml.jp/hatebu/sp");
 			return true;
 		case GOOGLE_MENU_ID :
-			{
-				Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
-				intentNew.putExtra("url","http://www.google.co.jp" );
-				startActivity(intentNew);
-			}
+			webView.loadUrl("http://www.google.co.jp");
 			return true;
 		case ANDROID_DEV_BLOG_SEARCH :
 			webView.loadUrl("https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687");
