@@ -37,7 +37,8 @@ public class MainActivity extends Activity{
 	private String bookmarkFileName = "bookmark.txt";
 		
 	@SuppressLint("SetJavaScriptEnabled")
-	@Override protected void onCreate(Bundle savedInstanceState) {
+	@Override 
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);   //既存のコード
 		requestWindowFeature(Window.FEATURE_NO_TITLE);  //タイトルバーを非表示にする
 		setContentView(R.layout.activity_main);  //既存のコード
@@ -151,22 +152,23 @@ public class MainActivity extends Activity{
 	}
 	
 	// オプション・メニューを作成
-	private static final int SUB_MENU_NEWS = 0;
-		private static final int NIKKEI_NEWS_MENU_ID = 1;
-		private static final int GOOGLE_NEWS_MENU_ID = 2;
-		private static final int HOTENTRY_MENU_ID = 3;
-	private static final int GOOGLE_MENU_ID = 4;
-	private static final int SUB_MENU_BLOG = 5;
-		private static final int ANDROID_DEV_BLOG_SEARCH = 6;
-		private static final int NEXUS7_BLOG_SEARCH = 7;
-		private static final int ANDROID_BLOG_SEARCH = 8;
-	private static final int SUB_MENU_MANUAL = 9;
-		private static final int GIT_MANUAL = 10;
-	private static final int SUB_MENU_BOOKMARK = 11;
-		private static final int ADD_BOOKMARK_MENU_ID = 12;
-		private static final int VIEW_BOOKMARK_MENU_ID = 13;
-	private static final int SETTING_MENU_ID = 14;
-	private static final int FINISH_MENU_ID = 15;
+	private static final int SUB_MENU_NEWS = 10;
+		private static final int NIKKEI_NEWS_MENU_ID = 11;
+		private static final int GOOGLE_NEWS_MENU_ID = 12;
+		private static final int HOTENTRY_MENU_ID = 13;
+		private static final int NIFTY_NEWS_MENU_ID = 14;
+	private static final int GOOGLE_MENU_ID = 20;
+	private static final int SUB_MENU_BLOG = 30;
+		private static final int ANDROID_DEV_BLOG_SEARCH = 31;
+		private static final int NEXUS7_BLOG_SEARCH = 32;
+		private static final int ANDROID_BLOG_SEARCH = 33;
+	private static final int SUB_MENU_MANUAL = 40;
+		private static final int GIT_MANUAL = 41;
+	private static final int SUB_MENU_BOOKMARK = 50;
+		private static final int ADD_BOOKMARK_MENU_ID = 51;
+		private static final int VIEW_BOOKMARK_MENU_ID = 52;
+	private static final int SETTING_MENU_ID = 60;
+	private static final int FINISH_MENU_ID = 70;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -183,6 +185,8 @@ public class MainActivity extends Activity{
 			subMenuNews.add(0, GOOGLE_NEWS_MENU_ID, 1, R.string.google_news);
 			// 人気エントリー
 			subMenuNews.add(0, HOTENTRY_MENU_ID, 2, R.string.hotentry);
+			// @niftyニュース
+			subMenuNews.add(0, NIFTY_NEWS_MENU_ID, 3, R.string.nifty_news);
 			
 		// Google
 		menu.add(0, GOOGLE_MENU_ID, 1, R.string.google);
@@ -220,8 +224,8 @@ public class MainActivity extends Activity{
 		// 設定
 		menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
 		
-		// 終了
-		menu.add(0, FINISH_MENU_ID, 8, R.string.finish);
+		// 閉じる
+		menu.add(0, FINISH_MENU_ID, 8, R.string.close);
 	
 		return true;
 	}
@@ -237,6 +241,9 @@ public class MainActivity extends Activity{
 			return true;
 		case HOTENTRY_MENU_ID :
 			webView.loadUrl("http://slx.heteml.jp/hatebu/sp");
+			return true;
+		case NIFTY_NEWS_MENU_ID :
+			webView.loadUrl("http://news.nifty.com/");
 			return true;
 		case GOOGLE_MENU_ID :
 			webView.loadUrl("http://www.google.co.jp");
