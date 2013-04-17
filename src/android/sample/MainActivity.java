@@ -240,7 +240,7 @@ public class MainActivity extends Activity{
 			webView.loadUrl("http://news.google.co.jp/");
 			return true;
 		case HOTENTRY_MENU_ID :
-			webView.loadUrl("http://slx.heteml.jp/hatebu/sp");
+			webView.loadUrl("http://hatebu.net/");
 			return true;
 		case NIFTY_NEWS_MENU_ID :
 			webView.loadUrl("http://news.nifty.com/");
