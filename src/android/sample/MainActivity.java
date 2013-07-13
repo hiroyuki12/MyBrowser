@@ -1,9 +1,5 @@
 package android.sample;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,7 +9,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
@@ -30,6 +25,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends Activity{
 
@@ -116,7 +115,7 @@ public class MainActivity extends Activity{
 		});
 		
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-		Boolean bJavascripOn = pref.getBoolean("javascriptOn",true);
+		Boolean bJavascriptOn = pref.getBoolean("javascriptOn",true);
 
 		WebSettings settings = webView.getSettings();
 		settings.setSupportMultipleWindows(false);  //trueではGoogleニュースのリンクが開けない
@@ -124,8 +123,8 @@ public class MainActivity extends Activity{
 		//settings.setSupportZoom(true);
 		//settings.setLightTouchEnabled(true);
 		//settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
-		settings.setJavaScriptEnabled(bJavascripOn);  //javascript有効化
-       settings.setPluginState(PluginState.ON);
+		settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
+        settings.setPluginState(PluginState.ON);
         
 		Bundle extras=getIntent().getExtras();
 		if (extras!=null) {
