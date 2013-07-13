@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
@@ -24,6 +25,7 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -123,7 +125,8 @@ public class MainActivity extends Activity{
 		//settings.setLightTouchEnabled(true);
 		//settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
 		settings.setJavaScriptEnabled(bJavascripOn);  //javascript有効化
-		
+       settings.setPluginState(PluginState.ON);
+        
 		Bundle extras=getIntent().getExtras();
 		if (extras!=null) {
 			String sKey1 = extras.getString("url");
