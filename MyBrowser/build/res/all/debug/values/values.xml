@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/home/hiroyuki/AndroidProjects/MyBrowserProject/MyBrowser/src/main/res/values/dimens.xml -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/home/hiroyuki/AndroidProjects/MyBrowserProject/MyBrowser/src/main/res/values/strings.xml -->
+    <string name="add_bookmark">ブックマーク追加</string>
+    <string name="android_blog_seach">Android</string>
+    <string name="android_dev_blog_seach">Android開発</string>
+    <string name="app_name">MyBrowser</string>
+    <string name="close">閉じる</string>
+    <string name="git_manual">Gitマニュアル</string>
+    <string name="google">Google</string>
+    <string name="google_news">Googleニュース</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hotentry">Hatebu::Classic</string>
+    <string name="menu_settings">Settings</string>
+    <string name="nexus7_blog_seach">Nexus7</string>
+    <string name="nifty_news">niftyニュース</string>
+    <string name="nikkei">日経新聞</string>
+    <string name="setting">設定</string>
+    <string name="subMenu_blog_search">ブログ検索...</string>
+    <string name="subMenu_bookmark">ブックマーク...</string>
+    <string name="subMenu_manual">マニュアル...</string>
+    <string name="subMenu_news">ニュース...</string>
+    <string name="view_bookmark">ブックマーク参照</string>
+    <!-- From: file:/home/hiroyuki/AndroidProjects/MyBrowserProject/MyBrowser/src/main/res/values/styles.xml -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+</resources>
