@@ -122,7 +122,8 @@ public class MainActivity extends Activity{
         settings.setLoadsImagesAutomatically(true);
         //settings.setSupportZoom(true);
         //settings.setLightTouchEnabled(true);
-        settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
+        //settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
+                                                  // スクロールした時に、ズームボタンが表示
         settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
         settings.setPluginState(PluginState.ON);
 
@@ -166,6 +167,7 @@ public class MainActivity extends Activity{
     private static final int ANDROID_BLOG_SEARCH = 33;
     private static final int SUB_MENU_MANUAL = 40;
     private static final int GIT_MANUAL = 41;
+    private static final int SENDTO_MENU_ID = 40;
     private static final int SUB_MENU_BOOKMARK = 50;
     private static final int ADD_BOOKMARK_MENU_ID = 51;
     private static final int VIEW_BOOKMARK_MENU_ID = 52;
@@ -206,12 +208,15 @@ public class MainActivity extends Activity{
         subMenuBlog.add(0, ANDROID_BLOG_SEARCH, 0, R.string.android_blog_seach);
 
         // マニュアルサブメニュー
-        SubMenu subMenuManual;
-        subMenuManual = menu.addSubMenu(Menu.NONE, SUB_MENU_MANUAL, 3, R.string.subMenu_manual);
-        subMenuManual.setIcon(android.R.drawable.ic_menu_directions);
+        //SubMenu subMenuManual;
+        //subMenuManual = menu.addSubMenu(Menu.NONE, SUB_MENU_MANUAL, 3, R.string.subMenu_manual);
+        //subMenuManual.setIcon(android.R.drawable.ic_menu_directions);
 
         // Gitマニュアル
-        subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
+        //subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
+
+        // 共有する
+        menu.add(0, SENDTO_MENU_ID, 3, R.string.subMenu_sendto);
 
         // ブックマークサブメニュー
         SubMenu subMenuBookmark;
@@ -224,7 +229,7 @@ public class MainActivity extends Activity{
         subMenuBookmark.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 1, R.string.view_bookmark);
 
         // 設定
-        menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
+        //menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
 
         // 閉じる
         menu.add(0, FINISH_MENU_ID, 8, R.string.close);
@@ -261,6 +266,13 @@ public class MainActivity extends Activity{
                 return true;
             case GIT_MANUAL :
                 webView.loadUrl("http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html");
+                return true;
+            case SENDTO_MENU_ID :
+                Toast.makeText(getApplicationContext(),"追加:" + currentTitle, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, currentUrl);
+                startActivityForResult(intent, 0);
                 return true;
             case ADD_BOOKMARK_MENU_ID :
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -319,9 +331,9 @@ public class MainActivity extends Activity{
                 // 第二引数の requestCode は 下の onActivityResult の
                 // 第一引数に渡される値で、条件分岐のための数値。
                 // requestCode が 0 未満の場合は startActivity(intent) と等価
-                Intent intent =new Intent(this, BookmarkActivity.class);
+                Intent intentBookmark =new Intent(this, BookmarkActivity.class);
                 int requestCode = 123;
-                startActivityForResult(intent, requestCode);
+                startActivityForResult(intentBookmark, requestCode);
                 return true;
             case SETTING_MENU_ID :
                 //設定画面を表示

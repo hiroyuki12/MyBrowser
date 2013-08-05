@@ -17,6 +17,7 @@
     <string name="android_blog_seach">Android</string>
     <string name="subMenu_manual">マニュアル...</string>
     <string name="git_manual">Gitマニュアル</string>
+    <string name="subMenu_sendto">共有する</string>
     <string name="subMenu_bookmark">ブックマーク...</string>
     <string name="add_bookmark">ブックマーク追加</string>
     <string name="view_bookmark">ブックマーク参照</string>
