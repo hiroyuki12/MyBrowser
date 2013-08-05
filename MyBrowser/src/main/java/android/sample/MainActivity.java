@@ -122,7 +122,7 @@ public class MainActivity extends Activity{
         settings.setLoadsImagesAutomatically(true);
         //settings.setSupportZoom(true);
         //settings.setLightTouchEnabled(true);
-        //settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
+        settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
         settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
         settings.setPluginState(PluginState.ON);
 
