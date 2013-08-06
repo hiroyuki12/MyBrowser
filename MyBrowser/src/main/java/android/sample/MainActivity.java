@@ -71,7 +71,7 @@ public class MainActivity extends Activity{
             public boolean shouldOverrideUrlLoading(WebView webView, String url)
             {
                 //googlePlayを別アプリで開く
-                if(url.startsWith("https://play.google.com/"))
+                if(url.startsWith("https://play.google.com/") || url.endsWith("mp3"))
                 {
                     Uri uri = Uri.parse(url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
