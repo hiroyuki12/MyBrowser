@@ -162,6 +162,7 @@ public class MainActivity extends Activity{
     private static final int NIFTY_NEWS_MENU_ID = 14;
     private static final int KETAI_MENU_ID = 15;
     private static final int CLOUD_MENU_ID = 16;
+    private static final int ITMEDIA_MENU_ID = 17;
     private static final int GOOGLE_MENU_ID = 20;
     private static final int SUB_MENU_BLOG = 30;
     private static final int ANDROID_DEV_BLOG_SEARCH = 31;
@@ -197,6 +198,8 @@ public class MainActivity extends Activity{
         subMenuNews.add(0, KETAI_MENU_ID, 4, R.string.ketai_news);
         // クラウドWatch
         subMenuNews.add(0, CLOUD_MENU_ID, 5, R.string.cloud_news);
+        // ITmedia
+        subMenuNews.add(0, ITMEDIA_MENU_ID, 6, R.string.it_media);
 
         // Google
         menu.add(0, GOOGLE_MENU_ID, 1, R.string.google);
@@ -263,6 +266,9 @@ public class MainActivity extends Activity{
                 return true;
             case CLOUD_MENU_ID:
                 webView.loadUrl("http://cloud.watch.impress.co.jp/");
+                return true;
+            case ITMEDIA_MENU_ID:
+                webView.loadUrl("http://www.itmedia.co.jp/");
                 return true;
             case GOOGLE_MENU_ID :
                 webView.loadUrl("http://www.google.co.jp");
