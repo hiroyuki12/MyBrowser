@@ -3,8 +3,7 @@
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <excludeFromCompile>
-      <file url="file://$PROJECT_DIR$/MyBrowser/build/source/buildConfig/debug/android/sample/BuildConfig.java" />
-      <file url="file://$PROJECT_DIR$/MyBrowser/build/source/r/debug/android/sample/R.java" />
+      <directory url="file://$PROJECT_DIR$/MyBrowser/src/main/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>
