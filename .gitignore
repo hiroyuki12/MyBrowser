@@ -1,8 +1,11 @@
-*.apk
-*.ap_
-*.class
-bin/
-gen/
-.classpath
-.project
-.settings/
+# Android Studio
+.gradle/
+.idea/
+gradle/
+build/
+out/
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
+*.iml
