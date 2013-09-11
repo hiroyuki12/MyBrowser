@@ -50,6 +50,9 @@ public class MainActivity extends Activity{
         {
             @Override
             public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
+                //ページのURL・タイトルを取得
+                currentUrl = url;
+                currentTitle = view.getTitle();
                 //プログレスバーを表示(10%)
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
                 progressBar.setProgress(10);
@@ -62,9 +65,6 @@ public class MainActivity extends Activity{
                 //プログレスバーを非表示
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
                 progressBar.setVisibility(View.GONE);
-                //ページのURL・タイトルを取得
-                currentUrl = url;
-                currentTitle = view.getTitle();
             }
 
             @Override
