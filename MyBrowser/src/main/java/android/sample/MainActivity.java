@@ -51,7 +51,9 @@ public class MainActivity extends Activity{
             @Override
             public void onPageStarted(final WebView view, final String url, final Bitmap favicon) {
                 //ページのURL・タイトルを取得
+                currentUrl = null;
                 currentUrl = url;
+                currentTitle = null;
                 currentTitle = view.getTitle();
                 //プログレスバーを表示(10%)
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
@@ -62,6 +64,8 @@ public class MainActivity extends Activity{
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                //タイトルを取得
+                currentTitle = view.getTitle();
                 //プログレスバーを非表示
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
                 progressBar.setVisibility(View.GONE);
@@ -89,11 +93,11 @@ public class MainActivity extends Activity{
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
                 if(progress >= 100)
                 {
-                    progressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);  //非表示
                 }
                 else
                 {
-                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);  //表示
                     progressBar.setProgress(progress);
                 }
             }
@@ -124,7 +128,7 @@ public class MainActivity extends Activity{
         //settings.setLightTouchEnabled(true);
         //settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
                                                   // スクロールした時に、ズームボタンが表示
-        settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
+        //settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
         settings.setPluginState(PluginState.ON);
 
         Bundle extras=getIntent().getExtras();
@@ -286,7 +290,8 @@ public class MainActivity extends Activity{
                 webView.loadUrl("http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html");
                 return true;
             case SENDTO_MENU_ID :
-                Toast.makeText(getApplicationContext(),"追加:" + currentTitle, Toast.LENGTH_SHORT).show();
+                if (currentTitle != null)  Toast.makeText(getApplicationContext(),"追加:" + currentTitle, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, currentUrl);
