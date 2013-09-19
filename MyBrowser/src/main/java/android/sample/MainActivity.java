@@ -55,9 +55,9 @@ public class MainActivity extends Activity{
                 currentUrl = url;
                 currentTitle = null;
                 currentTitle = view.getTitle();
-                //プログレスバーを表示(10%)
+                //プログレスバーを表示(0%)
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-                progressBar.setProgress(10);
+                progressBar.setProgress(0);
                 progressBar.setVisibility(View.VISIBLE);
             }
 
@@ -107,15 +107,21 @@ public class MainActivity extends Activity{
         webView.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+
                 WebView webView = (WebView) v;
                 WebView.HitTestResult hr = webView.getHitTestResult();
                 String url = hr.getExtra();
 
-                Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
-                intentNew.putExtra("url", url);
-                startActivity(intentNew);
+                if(url != null)
+                {
+                    Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
+                    intentNew.putExtra("url", url);
+                    startActivity(intentNew);
+
+                }
 
                 return false;
+
             }
         });
 
@@ -131,6 +137,7 @@ public class MainActivity extends Activity{
                                                   // スクロールした時に、ズームボタンが表示
         //settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
         settings.setPluginState(PluginState.ON);
+
 
         Bundle extras=getIntent().getExtras();
         if (extras!=null) {
