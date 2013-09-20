@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +46,7 @@ public class MainActivity extends Activity{
         setContentView(R.layout.activity_main);  //既存のコード
         // Webビューの作成
         webView = (WebView) findViewById(R.id.webview);
-        webView.setVerticalScrollbarOverlay(true);
+        //webView.setVerticalScrollbarOverlay(true);  //スクロールバーの領域を消す　不要？
         webView.setWebViewClient(new WebViewClient()  //リンクをタップしたときに標準ブラウザを起動させない
         {
             @Override
@@ -104,6 +105,7 @@ public class MainActivity extends Activity{
             }
         });
 
+        // ロングタップ時
         webView.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -112,16 +114,18 @@ public class MainActivity extends Activity{
                 WebView.HitTestResult hr = webView.getHitTestResult();
                 String url = hr.getExtra();
 
-                if(url != null)
                 {
+                    // 新しいViewでリンク開く
                     Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
                     intentNew.putExtra("url", url);
                     startActivity(intentNew);
 
+                    if(url == null)
+                        showToast("空白ページ", "short");
                 }
 
-                return false;
-
+                //onClickイベントを発生させない。テキストを選択しない。
+                return true;
             }
         });
 
@@ -135,7 +139,7 @@ public class MainActivity extends Activity{
         //settings.setLightTouchEnabled(true);
         //settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
                                                   // スクロールした時に、ズームボタンが表示
-        //settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
+        settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
         settings.setPluginState(PluginState.ON);
 
 
@@ -151,7 +155,8 @@ public class MainActivity extends Activity{
         }
         else
         {
-            webView.loadUrl("http://www.nikkei.com/");
+            String url = "http://www.nikkei.com/";
+            webView.loadUrl(url);
         }
     }
 
@@ -414,8 +419,19 @@ public class MainActivity extends Activity{
     }
 
     // トースト表示
-    public void showToast(String Message)
+    public void showToast(String Message, String Length)
     {
-        Toast.makeText(getApplicationContext(),Message, Toast.LENGTH_LONG).show();
+        if(Length == "long")
+        {
+            Toast toast = Toast.makeText(this, Message, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
+        else
+        {
+            Toast toast = Toast.makeText(this, Message, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
     }
 }
