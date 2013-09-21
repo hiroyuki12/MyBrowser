@@ -171,6 +171,26 @@ public class MainActivity extends Activity{
         return super.onKeyDown(keyCode, event);
     }
 
+    // onKeyLongPressメソッドをオーバーライドする
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        // バックキーの長押しに対する処理
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+            webView.clearCache(true); // キャッシュのクリア
+            webView.clearHistory(); // 履歴のクリア
+            finish();  //閉じる
+            return true;
+        }
+        // 検索キーの長押しに対する処理
+        //} else if (event.getKeyCode() == KeyEvent.KEYCODE_SEARCH) {
+        //    Toast.makeText(this, "検索キーが長押しされました！", Toast.LENGTH_SHORT ).show();
+        //    return true;
+        //}
+
+        // バックキー、検索キー以外の長押しはスルー
+        return super.onKeyLongPress(keyCode, event);
+    }
+
     // オプション・メニューを作成
     private static final int SUB_MENU_NEWS = 10;
     private static final int NIKKEI_NEWS_MENU_ID = 11;
@@ -379,7 +399,7 @@ public class MainActivity extends Activity{
                 //終了ボタンが押されたとき
                 webView.clearCache(true); // キャッシュのクリア
                 webView.clearHistory(); // 履歴のクリア
-                finish();  //終了
+                finish();  //閉じる
                 return true;
             default :
                 break;
