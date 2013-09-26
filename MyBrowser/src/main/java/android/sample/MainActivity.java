@@ -160,12 +160,14 @@ public class MainActivity extends Activity{
         }
     }
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     //戻るボタンで前のページに戻る
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //戻るボタンで前のページに戻る
-        if(keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-            webView.goBack();
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            event.startTracking();
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -189,6 +191,18 @@ public class MainActivity extends Activity{
 
         // バックキー、検索キー以外の長押しはスルー
         return super.onKeyLongPress(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if((event.getFlags() & KeyEvent.FLAG_CANCELED_LONG_PRESS) == 0) {
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                webView.goBack();
+                return true;
+            }
+        }
+
+        return super.onKeyUp(keyCode, event);
     }
 
     // オプション・メニューを作成
