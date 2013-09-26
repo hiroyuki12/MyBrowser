@@ -30,6 +30,7 @@ import android.widget.Toast;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import android.util.Log;
 
 public class MainActivity extends Activity{
 
@@ -116,12 +117,13 @@ public class MainActivity extends Activity{
 
                 {
                     // 新しいViewでリンク開く
+                    // urlがnullの時は空白ページを開く
                     Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
                     intentNew.putExtra("url", url);
                     startActivity(intentNew);
 
-                    if(url == null)
-                        showToast("空白ページ", "short");
+                    //if(url == null)
+                    //    showToast("空白ページ", "short");
                 }
 
                 //onClickイベントを発生させない。テキストを選択しない。
@@ -142,7 +144,6 @@ public class MainActivity extends Activity{
         settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
         settings.setPluginState(PluginState.ON);
 
-
         Bundle extras=getIntent().getExtras();
         if (extras!=null) {
             String sKey1 = extras.getString("url");
@@ -160,49 +161,19 @@ public class MainActivity extends Activity{
         }
     }
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     //戻るボタンで前のページに戻る
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //戻るボタンで前のページに戻る
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
-            event.startTracking();
+        if(keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            webView.goBack();
+            // debug
+            Log.v("hello", "goBack()");
             return true;
         }
+        // debug
+        Log.v("hello", "super.onKeyDown");
         return super.onKeyDown(keyCode, event);
-    }
-
-    // onKeyLongPressメソッドをオーバーライドする
-    @Override
-    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-        // バックキーの長押しに対する処理
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-            webView.clearCache(true); // キャッシュのクリア
-            webView.clearHistory(); // 履歴のクリア
-            finish();  //閉じる
-            return true;
-        }
-        // 検索キーの長押しに対する処理
-        //} else if (event.getKeyCode() == KeyEvent.KEYCODE_SEARCH) {
-        //    Toast.makeText(this, "検索キーが長押しされました！", Toast.LENGTH_SHORT ).show();
-        //    return true;
-        //}
-
-        // バックキー、検索キー以外の長押しはスルー
-        return super.onKeyLongPress(keyCode, event);
-    }
-
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if((event.getFlags() & KeyEvent.FLAG_CANCELED_LONG_PRESS) == 0) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                webView.goBack();
-                return true;
-            }
-        }
-
-        return super.onKeyUp(keyCode, event);
     }
 
     // オプション・メニューを作成
