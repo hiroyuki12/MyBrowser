@@ -1,6 +1,7 @@
 package android.sample;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -43,7 +44,7 @@ public class MainActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);   //既存のコード
-        requestWindowFeature(Window.FEATURE_NO_TITLE);  //タイトルバーを非表示にする
+        requestWindowFeature(Window.FEATURE_NO_TITLE);  //アクションバーを非表示にする
         setContentView(R.layout.activity_main);  //既存のコード
         // Webビューの作成
         webView = (WebView) findViewById(R.id.webview);
