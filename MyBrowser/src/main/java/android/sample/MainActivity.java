@@ -86,6 +86,16 @@ public class MainActivity extends Activity{
                     startActivity(intent);
                     return true;
                 }
+                else if(url.startsWith("http://gigazine.net/"))     //GIGAZINEは100%だと見づらいので全体表示
+                {
+                    webView.getSettings().setLoadWithOverviewMode(true);    //Overviewモードはページが画面に収まるように自動で縮小します
+                    webView.getSettings().setUseWideViewPort(true);
+                }
+                else  //GIGAZINE以外は100%表示
+                {
+                    webView.getSettings().setLoadWithOverviewMode(false);
+                    webView.getSettings().setUseWideViewPort(false);
+                }
 
                 return false;
             }
