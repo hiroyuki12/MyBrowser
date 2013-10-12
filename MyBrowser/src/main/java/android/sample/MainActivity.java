@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,10 +40,16 @@ public class MainActivity extends Activity{
     private String currentUrl;
     private String currentTitle;
     private String bookmarkFileName = "bookmark.txt";
+    private boolean xlarge = false;      // xlarge true=タブレット、false=タブレットでない
+
+    public static boolean isTablet(Context context) {
+        return context.getResources().getBoolean(R.bool.isTablet);
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        xlarge = isTablet(this);
         super.onCreate(savedInstanceState);   //既存のコード
         requestWindowFeature(Window.FEATURE_NO_TITLE);  //アクションバーを非表示にする
         setContentView(R.layout.activity_main);  //既存のコード
