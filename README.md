@@ -5,10 +5,12 @@ Androidウェブブラウザ
 ## 特徴
 片手で操作しやすいように全ての機能を右下のメニューボタンから実行。  
 フルスクリーンでWEB表示領域を広く。   
-画面に合わせて縮小ではなく、100%表示。
+画面に合わせて縮小ではなく、基本100%表示。
 
 ## スクリーンショット
+[![日経新聞](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104544.png)](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104544.png)  
 
+[![Google News](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104545.png)](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104545.png)
 
 ## 主な用途
 ニュースサイトを閲覧、Google検索、ブログ検索、Pocketに登録。  
