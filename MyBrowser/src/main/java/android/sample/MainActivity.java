@@ -84,6 +84,7 @@ public class MainActivity extends Activity{
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String url)
             {
+                showToast(url, "short");
                 //googlePlayを別アプリで開く
                 //mp3, pdfを別アプリで開く
                 if(url.startsWith("https://play.google.com/") || url.startsWith("market://") || url.endsWith("mp3") || url.endsWith("pdf"))
@@ -160,22 +161,50 @@ public class MainActivity extends Activity{
         //settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
                                                   // スクロールした時に、ズームボタンが表示
         settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
-        settings.setPluginState(PluginState.ON);
+        //settings.setPluginState(PluginState.ON);  // setPluginState deprecated
 
         Bundle extras=getIntent().getExtras();
-        if (extras!=null) {
-            String sKey1 = extras.getString("url");
-            webView.loadUrl(sKey1);
-        }
-        else if (Intent.ACTION_VIEW.equals(getIntent().getAction()) ){
-            //暗黙的インテント経由で起動された時の処理
+        // 他のアプリでURLをタップした時の処理(暗黙的インテント経由で起動)
+        if (Intent.ACTION_VIEW.equals(getIntent().getAction()) ){
+            showToast("暗黙的インテント", "short");
             String url = getIntent().getDataString();
             webView.loadUrl(url);
+            showToast(url, "short");
+        }
+        // MyBrowserでリンクを長押しした時の処理
+        else if (extras!=null) {
+            showToast("リンク長押し", "short");
+            String url = extras.getString("url");
+
+            //googlePlayを別アプリで開く
+            //mp3, pdfを別アプリで開く
+            if(url.startsWith("https://play.google.com/") || url.startsWith("market://") || url.endsWith("mp3") || url.endsWith("pdf"))
+            {
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+            else if(url.startsWith("http://gigazine.net/"))     //GIGAZINEは100%だと見づらいので全体表示
+            {
+                webView.getSettings().setLoadWithOverviewMode(true);    //Overviewモードはページが画面に収まるように自動で縮小します
+                webView.getSettings().setUseWideViewPort(true);
+            }
+            else  //GIGAZINE以外は100%表示
+            {
+                webView.getSettings().setLoadWithOverviewMode(false);
+                webView.getSettings().setUseWideViewPort(false);
+            }
+            webView.loadUrl(url);
+
+            showToast(url, "short");
         }
         else
         {
+            showToast("日経を開く", "short");
             String url = "http://www.nikkei.com/";
             webView.loadUrl(url);
+
+            showToast(url, "short");
         }
     }
 
