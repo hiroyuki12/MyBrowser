@@ -1,4 +1,4 @@
-MyBrowser
+MyBrowser Version 0.0.1
 =========
 Androidウェブブラウザ
 
