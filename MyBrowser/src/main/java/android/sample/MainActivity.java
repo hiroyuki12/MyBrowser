@@ -134,6 +134,7 @@ public class MainActivity extends Activity{
                 WebView.HitTestResult hr = webView.getHitTestResult();
                 String url = hr.getExtra();
 
+                if (url != null)
                 {
                     // 新しいViewでリンク開く
                     // urlがnullの時は空白ページを開く
@@ -141,8 +142,13 @@ public class MainActivity extends Activity{
                     intentNew.putExtra("url", url);
                     startActivity(intentNew);
 
-                    //if(url == null)
-                    //    showToast("空白ページ", "short");
+                }
+                else  //リンク以外をロングタップ時
+                {
+                    // 新しいViewで空白ページを開く
+                    Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
+                    intentNew.putExtra("url", "about:blank");
+                    startActivity(intentNew);
                 }
 
                 //onClickイベントを発生させない。テキストを選択しない。
@@ -431,7 +437,7 @@ public class MainActivity extends Activity{
                 //終了ボタンが押されたとき
                 webView.clearCache(true); // キャッシュのクリア
                 webView.clearHistory(); // 履歴のクリア
-                finish();  //閉じる
+                this.finish();  //閉じる
                 return true;
             default :
                 break;
@@ -476,13 +482,13 @@ public class MainActivity extends Activity{
         if(Length == "long")
         {
             Toast toast = Toast.makeText(this, Message, Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.setGravity(Gravity.BOTTOM, 0, 0);
             toast.show();
         }
         else
         {
             Toast toast = Toast.makeText(this, Message, Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.setGravity(Gravity.BOTTOM, 0, 0);
             toast.show();
         }
     }
