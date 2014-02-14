@@ -78,7 +78,7 @@ public class MainActivity extends Activity{
                 currentTitle = view.getTitle();
                 //プログレスバーを非表示
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-                progressBar.setVisibility(View.GONE);
+                //progressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -115,7 +115,7 @@ public class MainActivity extends Activity{
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
                 if(progress >= 100)
                 {
-                    progressBar.setVisibility(View.GONE);  //非表示
+                    //progressBar.setVisibility(View.GONE);  //非表示
                 }
                 else
                 {
