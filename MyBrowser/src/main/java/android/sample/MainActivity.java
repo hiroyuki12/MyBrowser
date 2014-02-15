@@ -86,8 +86,9 @@ public class MainActivity extends Activity{
             {
                 showToast(url, "short");
                 //googlePlayを別アプリで開く
-                //mp3, pdfを別アプリで開く
-                if(url.startsWith("https://play.google.com/") || url.startsWith("market://") || url.endsWith("mp3") || url.endsWith("pdf"))
+                //mp3, pdf, apkを別アプリで開く
+                if(url.startsWith("https://play.google.com/") || url.startsWith("market://") || url.endsWith("mp3") || url.endsWith("pdf")
+                        || url.endsWith("apk"))
                 {
                     Uri uri = Uri.parse(url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
