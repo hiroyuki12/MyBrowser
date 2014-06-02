@@ -95,7 +95,7 @@ public class MainActivity extends Activity{
                     startActivity(intent);
                     return true;
                 }
-                else if(url.startsWith("http://gigazine.net/"))     //GIGAZINEは100%だと見づらいので全体表示
+                else if(url.startsWith("http://gigazine.net/") || url.startsWith("https://speakerdeck.com/"))     //GIGAZINEは100%だと見づらいので全体表示
                 {
                     webView.getSettings().setLoadWithOverviewMode(true);    //Overviewモードはページが画面に収まるように自動で縮小します
                     webView.getSettings().setUseWideViewPort(true);
@@ -191,7 +191,7 @@ public class MainActivity extends Activity{
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
-            else if(url.startsWith("http://gigazine.net/"))     //GIGAZINEは100%だと見づらいので全体表示
+            else if(url.startsWith("http://gigazine.net/") || url.startsWith("https://speakerdeck.com/"))     //GIGAZINEは100%だと見づらいので全体表示
             {
                 webView.getSettings().setLoadWithOverviewMode(true);    //Overviewモードはページが画面に収まるように自動で縮小します
                 webView.getSettings().setUseWideViewPort(true);
