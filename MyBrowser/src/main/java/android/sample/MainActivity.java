@@ -77,14 +77,14 @@ public class MainActivity extends Activity{
                 //タイトルを取得
                 currentTitle = view.getTitle();
                 //プログレスバーを非表示
-                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+                //ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
                 //progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String url)
             {
-                showToast(url, "short");
+                //showToast(url, "short");
                 //googlePlayを別アプリで開く
                 //mp3, pdf, apkを別アプリで開く
                 if(url.startsWith("https://play.google.com/") || url.startsWith("market://") || url.endsWith("mp3") || url.endsWith("pdf")
@@ -165,6 +165,7 @@ public class MainActivity extends Activity{
         settings.setLoadsImagesAutomatically(true);
         //settings.setSupportZoom(true);
         //settings.setLightTouchEnabled(true);
+
         //settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
                                                   // スクロールした時に、ズームボタンが表示
         settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
@@ -173,14 +174,14 @@ public class MainActivity extends Activity{
         Bundle extras=getIntent().getExtras();
         // 他のアプリでURLをタップした時の処理(暗黙的インテント経由で起動)
         if (Intent.ACTION_VIEW.equals(getIntent().getAction()) ){
-            showToast("暗黙的インテント", "short");
+            //showToast("暗黙的インテント", "short");
             String url = getIntent().getDataString();
             webView.loadUrl(url);
-            showToast(url, "short");
+            //showToast(url, "short");
         }
         // MyBrowserでリンクを長押しした時の処理
         else if (extras!=null) {
-            showToast("リンク長押し", "short");
+            //showToast("リンク長押し", "short");
             String url = extras.getString("url");
 
             //googlePlayを別アプリで開く
@@ -203,15 +204,15 @@ public class MainActivity extends Activity{
             }
             webView.loadUrl(url);
 
-            showToast(url, "short");
+            //showToast(url, "short");
         }
         else
         {
-            showToast("日経を開く", "short");
+            //showToast("日経を開く", "short");
             String url = "http://www.nikkei.com/";
             webView.loadUrl(url);
 
-            showToast(url, "short");
+            //showToast(url, "short");
         }
     }
 
