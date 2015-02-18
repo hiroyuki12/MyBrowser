@@ -21,6 +21,9 @@ Xperia AとNexus 7 (2012)で使いやすく。
 
 [![Hatebu::Classic](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015524.png?1424278573)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015524.png?1424278573)
 
+[![オプションメニュー](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219020354.png?14242790433)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219020354.png?1424279043)
+
+
 
 ## 主な用途
 ニュースサイトを閲覧、Google検索、ブログ検索、Pocketに登録。  
