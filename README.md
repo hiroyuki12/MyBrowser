@@ -8,12 +8,19 @@ Androidウェブブラウザ
 画面に合わせて縮小ではなく、基本100%表示。
 Xperia AとNexus 7 (2012)で使いやすく。
 
-## スクリーンショット
+## スクリーンショット (Xperia A)
 [![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)  
 
 [![Google News](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)
 
 [![オプションメニュー](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013741.png?14242774754)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013741.png?1424277475)
+
+
+## スクリーンショット (Next 7 (2012))
+[![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015516.png?1424278550)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015516.png?1424278550)  
+
+[![Hatebu::Classic](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015524.png?1424278573)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015524.png?1424278573)
+
 
 ## 主な用途
 ニュースサイトを閲覧、Google検索、ブログ検索、Pocketに登録。  
