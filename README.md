@@ -8,7 +8,7 @@ Androidウェブブラウザ
 画面に合わせて縮小ではなく、基本100%表示。
 
 ## スクリーンショット
-[![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219012945.jpg?1424277473)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219012945.jpg?1424277473)  
+[![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)  
 
 [![Google News](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)
 
