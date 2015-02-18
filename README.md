@@ -8,9 +8,11 @@ Androidウェブブラウザ
 画面に合わせて縮小ではなく、基本100%表示。
 
 ## スクリーンショット
-[![日経新聞](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104544.png)](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104544.png)  
+[![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219012945.jpg?1424277473)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219012945.jpg?1424277473)  
 
-[![Google News](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104545.png)](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104545.png)
+[![Google News](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)
+
+[![オプションメニュー](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013741.png?14242774754)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013741.png?1424277475)
 
 ## 主な用途
 ニュースサイトを閲覧、Google検索、ブログ検索、Pocketに登録。  
