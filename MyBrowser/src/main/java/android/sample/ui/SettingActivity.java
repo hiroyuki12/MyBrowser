@@ -1,4 +1,4 @@
-package android.sample;
+package android.sample.ui;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
