@@ -6,11 +6,24 @@ Androidウェブブラウザ
 片手で操作しやすいように全ての機能を右下のメニューボタンから実行。  
 フルスクリーンでWEB表示領域を広く。   
 画面に合わせて縮小ではなく、基本100%表示。
+Xperia AとNexus 7 (2012)で使いやすく。
 
-## スクリーンショット
-[![日経新聞](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104544.png)](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104544.png)  
+## スクリーンショット (Xperia A)
+[![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)  
 
-[![Google News](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104545.png)](http://cdn-ak.f.st-hatena.com/images/fotolife/f/fedora9/20130918/20130918104545.png)
+[![Google News](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013726.png?1424277474)
+
+[![オプションメニュー](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013741.png?14242774754)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219013741.png?1424277475)
+
+
+## スクリーンショット (Next 7 (2012))
+[![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015516.png?1424278550)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015516.png?1424278550)  
+
+[![Hatebu::Classic](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015524.png?1424278573)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219015524.png?1424278573)
+
+[![オプションメニュー](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219020354.png?14242790433)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219020354.png?1424279043)
+
+
 
 ## 主な用途
 ニュースサイトを閲覧、Google検索、ブログ検索、Pocketに登録。  
