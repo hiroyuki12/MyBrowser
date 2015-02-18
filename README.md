@@ -6,6 +6,7 @@ Androidウェブブラウザ
 片手で操作しやすいように全ての機能を右下のメニューボタンから実行。  
 フルスクリーンでWEB表示領域を広く。   
 画面に合わせて縮小ではなく、基本100%表示。
+Xperia AとNexus 7 (2012)で使いやすく。
 
 ## スクリーンショット
 [![日経新聞](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)](http://f.st-hatena.com/images/fotolife/f/fedora9/20150219/20150219014525.png?1424278014)  
