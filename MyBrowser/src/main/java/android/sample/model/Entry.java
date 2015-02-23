@@ -9,6 +9,7 @@ import android.sample.R;
 public class Entry {
     private String url = "";
     private String title = "";
+    private int scale = 100;
     private boolean xlarge = false;      // xlarge true=タブレット、false=タブレットでない
 
     public String getUrl() {
@@ -18,6 +19,11 @@ public class Entry {
     public String getTitle() {
         return title;
     }
+
+    public int getScale() {
+        return scale;
+    }
+
 
     public boolean getXlarge() {
         return xlarge;
@@ -41,6 +47,9 @@ public class Entry {
         this.title = title;
     }
 
+    public void setScale(int scale) {
+        this.scale = scale;
+    }
 
     public void setXlarge(Context context) {
         xlarge = context.getResources().getBoolean(R.bool.isTablet);

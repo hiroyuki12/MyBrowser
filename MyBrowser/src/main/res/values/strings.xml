@@ -13,6 +13,9 @@
     <string name="ketai_news">ケータイWatch</string>
     <string name="cloud_news">クラウドWatch</string>
     <string name="it_media">ITmedia</string>
+    <string name="engadget">engadget</string>
+    <string name="tech_crunch">TechCrunch</string>
+    <string name="gigazine">GIGAZINE</string>
     <string name="my_browser">MyBrowser</string>
     <string name="google">Google</string>
     <string name="subMenu_blog_search">ブログ検索...</string>
@@ -22,7 +25,11 @@
     <string name="subMenu_manual">マニュアル...</string>
     <string name="git_manual">Gitマニュアル</string>
     <string name="subMenu_sendto">共有する</string>
-    <string name="subMenu_bookmark">ブックマーク...</string>
+    <string name="other_browser">別のブラウザで開く</string>
+    <string name="show_scale">拡大率表示</string>
+    <string name="subMenu_other">その他...</string>
+    <string name="new_tab">新しいタブを開く</string>
+    <!--<string name="subMenu_bookmark">ブックマーク...</string>-->
     <string name="add_bookmark">ブックマーク追加</string>
     <string name="view_bookmark">ブックマーク参照</string>
     <string name="setting">設定</string>

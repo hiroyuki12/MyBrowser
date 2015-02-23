@@ -10,29 +10,44 @@ import android.view.SubMenu;
  */
 public class OptionMenu {
 
+    private static int index = 100;
+
     // オプション・メニューを作成
-    private static final int SUB_MENU_NEWS = 10;
-    private static final int NIKKEI_NEWS_MENU_ID = 11;
-    private static final int GOOGLE_NEWS_MENU_ID = 12;
-    private static final int HOTENTRY_MENU_ID = 13;
-    private static final int NIFTY_NEWS_MENU_ID = 14;
-    private static final int KETAI_MENU_ID = 15;
-    private static final int CLOUD_MENU_ID = 16;
-    private static final int ITMEDIA_MENU_ID = 17;
-    private static final int MYBROWSER_MENU_ID = 18;
-    private static final int GOOGLE_MENU_ID = 20;
-    private static final int SUB_MENU_BLOG = 30;
-    private static final int ANDROID_DEV_BLOG_SEARCH = 31;
-    private static final int NEXUS7_BLOG_SEARCH = 32;
-    private static final int ANDROID_BLOG_SEARCH = 33;
-    private static final int SUB_MENU_MANUAL = 40;
-    private static final int GIT_MANUAL = 41;
-    private static final int SENDTO_MENU_ID = 40;
-    private static final int SUB_MENU_BOOKMARK = 50;
-    private static final int ADD_BOOKMARK_MENU_ID = 51;
-    private static final int VIEW_BOOKMARK_MENU_ID = 52;
-    private static final int SETTING_MENU_ID = 60;
-    private static final int FINISH_MENU_ID = 70;
+    private static final int SUB_MENU_NEWS = index++;
+    private static final int NIKKEI_NEWS_MENU_ID = index++;
+    private static final int GOOGLE_NEWS_MENU_ID = index++;
+    private static final int HOTENTRY_MENU_ID = index++;
+    private static final int NIFTY_NEWS_MENU_ID = index++;
+    private static final int KETAI_MENU_ID = index++;
+    private static final int CLOUD_MENU_ID = index++;
+    private static final int ITMEDIA_MENU_ID = index++;
+    private static final int ENGADGET_MENU_ID = index++;
+    private static final int TECH_CRUNCH_MENU_ID = index++;
+    private static final int GIGAZINE = index++;
+    private static final int MYBROWSER_MENU_ID = index++;
+
+    private static final int GOOGLE_MENU_ID = index++;
+
+    private static final int SUB_MENU_BLOG = index++;
+    private static final int ANDROID_DEV_BLOG_SEARCH = index++;
+    private static final int NEXUS7_BLOG_SEARCH = index++;
+    private static final int ANDROID_BLOG_SEARCH = index++;
+
+    private static final int SUB_MENU_MANUAL = index++;
+    private static final int GIT_MANUAL = index++;
+
+    private static final int SENDTO_MENU_ID = 1;
+    private static final int OTHER_BROWSER = 2;
+    private static final int SHOW_SCALE = 3;
+
+    private static final int SUB_MENU_OTHER = index++;
+    private static final int NEW_TAB = 4;
+//    private static final int SUB_MENU_BOOKMARK = index++;
+    private static final int ADD_BOOKMARK_MENU_ID = 5;
+    private static final int VIEW_BOOKMARK_MENU_ID = 6;
+    private static final int SETTING_MENU_ID = 7;
+
+    private static final int FINISH_MENU_ID = 8;
 
     public Menu addSubMenu(Menu menu)
     {
@@ -42,22 +57,17 @@ public class OptionMenu {
         subMenuNews = menu.addSubMenu(Menu.NONE, SUB_MENU_NEWS, 0, R.string.subMenu_news);
         //subMenuNews.setIcon(android.R.drawable.ic_menu_directions);
 
-        // 日経
         subMenuNews.add(0, NIKKEI_NEWS_MENU_ID, 0, R.string.nikkei);
-        // Googleニュース
         subMenuNews.add(0, GOOGLE_NEWS_MENU_ID, 1, R.string.google_news);
-        // 人気エントリー
         subMenuNews.add(0, HOTENTRY_MENU_ID, 2, R.string.hotentry);
-        // @niftyニュース
         subMenuNews.add(0, NIFTY_NEWS_MENU_ID, 3, R.string.nifty_news);
-        // ケータイWatch
         subMenuNews.add(0, KETAI_MENU_ID, 4, R.string.ketai_news);
-        // クラウドWatch
         subMenuNews.add(0, CLOUD_MENU_ID, 5, R.string.cloud_news);
-        // ITmedia
         subMenuNews.add(0, ITMEDIA_MENU_ID, 6, R.string.it_media);
-        // MyBrowser
-        subMenuNews.add(0, MYBROWSER_MENU_ID, 7, R.string.my_browser);
+        subMenuNews.add(0, ENGADGET_MENU_ID, 7, R.string.engadget);
+        subMenuNews.add(0, TECH_CRUNCH_MENU_ID, 8, R.string.tech_crunch);
+        subMenuNews.add(0, GIGAZINE, 9, R.string.gigazine);
+        subMenuNews.add(0, MYBROWSER_MENU_ID, 10, R.string.my_browser);
 
         // Google
         menu.add(0, GOOGLE_MENU_ID, 1, R.string.google);
@@ -82,18 +92,29 @@ public class OptionMenu {
         // Gitマニュアル
         //subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
 
-        // 共有する
-        menu.add(0, SENDTO_MENU_ID, 3, R.string.subMenu_sendto);
 
-        // ブックマークサブメニュー
-        SubMenu subMenuBookmark;
-        subMenuBookmark = menu.addSubMenu(Menu.NONE, SUB_MENU_BOOKMARK, 4, R.string.subMenu_bookmark);
+        // 共有する
+        menu.add(0, SENDTO_MENU_ID, 4, R.string.subMenu_sendto);
+
+        // その他サブメニュー
+        SubMenu subMenuOther;
+        subMenuOther = menu.addSubMenu(Menu.NONE, SUB_MENU_OTHER, 5, R.string.subMenu_other);
+
+
+//        subMenuBookmark = menu.addSubMenu(Menu.NONE, SUB_MENU_BOOKMARK, 4, R.string.subMenu_bookmark);
         //subMenuBookmark.setIcon(android.R.drawable.ic_menu_directions);
 
+        //新しいタブを開く
+        subMenuOther.add(Menu.NONE,  NEW_TAB, 0, R.string.new_tab);
+        // 別のブラウザで開く
+        subMenuOther.add(Menu.NONE, OTHER_BROWSER, 1, R.string.other_browser);
+        // 拡大率を表示
+        subMenuOther.add(Menu.NONE, SHOW_SCALE, 2, R.string.show_scale);
+
         //追加
-        subMenuBookmark.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 0, R.string.add_bookmark);
+        subMenuOther.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 3, R.string.add_bookmark);
         //参照
-        subMenuBookmark.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 1, R.string.view_bookmark);
+        subMenuOther.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 4, R.string.view_bookmark);
 
         // 設定
         //menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
@@ -108,49 +129,55 @@ public class OptionMenu {
     {
         String url = "";
 
-        switch (item.getItemId()) {
-            case NIKKEI_NEWS_MENU_ID :
-                url = "http://www.nikkei.com/";
-                break;
-            case GOOGLE_NEWS_MENU_ID :
-                url = "http://news.google.co.jp/";
-                break;
-            case HOTENTRY_MENU_ID :
-                url = "http://hatebu.net/";
-                break;
-            case NIFTY_NEWS_MENU_ID :
-                url = "http://news.nifty.com/";
-                break;
-            case KETAI_MENU_ID:
-                url = "http://k-tai.impress.co.jp/";
-                break;
-            case CLOUD_MENU_ID:
-                url = "http://cloud.watch.impress.co.jp/";
-                break;
-            case ITMEDIA_MENU_ID:
-                url = "http://www.itmedia.co.jp/";
-                break;
-            case MYBROWSER_MENU_ID:
-                url = "https://github.com/hiroyuki12/MyBrowser/commits/master";
-                break;
-            case GOOGLE_MENU_ID :
-                url = "http://www.google.co.jp/";
-                break;
-            case ANDROID_DEV_BLOG_SEARCH :
-                url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687";
-                break;
-            case NEXUS7_BLOG_SEARCH :
-                url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&gs_rn=1&gs_ri=serp&gs_is=1&pq=android%20%E9%96%8B%E7%99%BA&cp=4&gs_id=19&xhr=t&q=nexus7&es_nrs=true&pf=p&tbo=d&tbm=blg&sclient=psy-ab&oq=nexu&gs_l=&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=629";
-                break;
-            case ANDROID_BLOG_SEARCH :
-                url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&tbo=d&tbm=blg&sclient=psy-ab&q=android&oq=android&gs_l=serp.3..0l8.414037.415041.4.415245.7.5.0.2.2.1.605.1488.1j1j1j0j1j1.5.0...0.0...1c.1j4.ZkHRPiMpKKI&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=623";
-                break;
-            case GIT_MANUAL :
-                url = "http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html";
-                break;
-
-            default :
-                break;
+        //switch (item.getItemId()) {
+        //  case NIKKEI_NEWS_MENU_ID :
+        if(item.getItemId() == NIKKEI_NEWS_MENU_ID) {
+            url = "http://www.nikkei.com/";
+        }
+        else if(item.getItemId() == GOOGLE_NEWS_MENU_ID) {
+            url = "http://news.google.co.jp/";
+        }
+        else if(item.getItemId() == HOTENTRY_MENU_ID) {
+            url = "http://hatebu.net/";
+        }
+        else if(item.getItemId() == NIFTY_NEWS_MENU_ID) {
+            url = "http://news.nifty.com/";
+        }
+        else if(item.getItemId() == KETAI_MENU_ID) {
+            url = "http://k-tai.impress.co.jp/";
+        }
+        else if(item.getItemId() == CLOUD_MENU_ID) {
+            url = "http://cloud.watch.impress.co.jp/";
+        }
+        else if(item.getItemId() == ITMEDIA_MENU_ID) {
+            url = "http://www.itmedia.co.jp/";
+        }
+        else if(item.getItemId() == ENGADGET_MENU_ID) {
+            url = "http://japanese.engadget.com/";
+        }
+        else if(item.getItemId() == TECH_CRUNCH_MENU_ID) {
+            url = "http://jp.techcrunch.com/";
+        }
+        else if(item.getItemId() == GIGAZINE) {
+            url = "http://gigazine.net/";
+        }
+        else if(item.getItemId() == MYBROWSER_MENU_ID) {
+            url = "https://github.com/hiroyuki12/MyBrowser/commits/master";
+        }
+        else if(item.getItemId() == GOOGLE_MENU_ID) {
+            url = "http://www.google.co.jp/";
+        }
+        else if(item.getItemId() == ANDROID_DEV_BLOG_SEARCH) {
+            url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687";
+        }
+        else if(item.getItemId() == NEXUS7_BLOG_SEARCH) {
+            url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&gs_rn=1&gs_ri=serp&gs_is=1&pq=android%20%E9%96%8B%E7%99%BA&cp=4&gs_id=19&xhr=t&q=nexus7&es_nrs=true&pf=p&tbo=d&tbm=blg&sclient=psy-ab&oq=nexu&gs_l=&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=629";
+        }
+        else if(item.getItemId() == ANDROID_BLOG_SEARCH) {
+            url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&tbo=d&tbm=blg&sclient=psy-ab&q=android&oq=android&gs_l=serp.3..0l8.414037.415041.4.415245.7.5.0.2.2.1.605.1488.1j1j1j0j1j1.5.0...0.0...1c.1j4.ZkHRPiMpKKI&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=623";
+        }
+        else if(item.getItemId() == GIT_MANUAL) {
+            url = "http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html";
         }
 
         return url;

@@ -72,7 +72,8 @@ public class MainActivity extends Activity{
                 }
 
                 Scale s = new Scale();
-                webView.setInitialScale(s.getScale(entry.getXlarge(), url));  //拡大率を設定
+                entry.setScale(s.getScale(entry.getXlarge(), url));
+                webView.setInitialScale(entry.getScale());  //拡大率を設定
                 Log.d("MyBrowser", "onPageStarted(4)");
             }
 
@@ -93,7 +94,10 @@ public class MainActivity extends Activity{
                 Log.d("MyBrowser", "shouldOverrideUrlLoading");
                 return false;
             }
+
         });
+
+
 
         /*
         webView.setWebChromeClient(new WebChromeClient() {
@@ -123,7 +127,7 @@ public class MainActivity extends Activity{
                     intentNew.putExtra("url", url);
                     startActivity(intentNew);
                 }
-                else  //リンク以外をロングタップ時
+                /* else  //リンク以外をロングタップ時
                 {
                     // 新しいViewで空白ページを開く
                     Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
@@ -131,7 +135,7 @@ public class MainActivity extends Activity{
                     startActivity(intentNew);
                     showToast("about:blank", "short");
                 }
-                Log.d("MyBrowser", "setOnLongClickListener");
+                Log.d("MyBrowser", "setOnLongClickListener"); */
                 return true;  //onClickイベントを発生させない。テキストを選択しない。
             }
         });
@@ -191,11 +195,14 @@ public class MainActivity extends Activity{
     }
 
     // オプション・メニューを作成
-    private static final int SENDTO_MENU_ID = 40;
-    private static final int ADD_BOOKMARK_MENU_ID = 51;
-    private static final int VIEW_BOOKMARK_MENU_ID = 52;
-    private static final int SETTING_MENU_ID = 60;
-    private static final int FINISH_MENU_ID = 70;
+    private static final int SENDTO_MENU_ID = 1;
+    private static final int OTHER_BROWSER = 2;
+    private static final int SHOW_SCALE = 3;
+    private static final int NEW_TAB = 4;
+    private static final int ADD_BOOKMARK_MENU_ID = 5;
+    private static final int VIEW_BOOKMARK_MENU_ID = 6;
+    private static final int SETTING_MENU_ID = 7;
+    private static final int FINISH_MENU_ID = 8;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -213,6 +220,7 @@ public class MainActivity extends Activity{
         Log.d("MyBrowser", "onPrepareOptionsMenu");
         return super.onPrepareOptionsMenu(menu);
     }
+
 
     // メニューを選択した時の処理
     public boolean onMenuItemSelected(int featureId,MenuItem item){
@@ -232,8 +240,28 @@ public class MainActivity extends Activity{
 
                     Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                     intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_TEXT, entry.getTitle());
+                    intent.putExtra(Intent.EXTRA_TEXT, entry.getUrl());
                     startActivityForResult(intent, 0);
+                    break;
+                case OTHER_BROWSER:
+                    if (entry.getUrl() != null) {
+                        Uri uri = Uri.parse(entry.getUrl());
+                        Intent intentBrowser = new Intent(Intent.ACTION_VIEW, uri);
+                        Intent chooser = Intent.createChooser(intentBrowser, "ブラウザの選択");
+                        //intent.setType("text/plain");
+                        //intent.putExtra(Intent.EXTRA_TEXT, entry.getTitle());
+                        startActivity(chooser);
+                    }
+                    break;
+                case SHOW_SCALE:
+                    showToast("拡大率は " + String.valueOf(entry.getScale()) + " %です", "short");
+                    break;
+                case NEW_TAB:
+                    // 新しいViewで空白ページを開く
+                    Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
+                    intentNew.putExtra("url", "about:blank");
+                    startActivity(intentNew);
+                    showToast("about:blank", "short");
                     break;
                 case ADD_BOOKMARK_MENU_ID:
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
