@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.sample.R;
 import android.sample.model.Entry;
 import android.sample.model.OptionMenu;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity{
     private WebView webView;
     private Entry entry = new Entry();
     private String bookmarkFileName = "bookmark.txt";
+    private int newsIndex = 1;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -62,8 +64,10 @@ public class MainActivity extends Activity{
                 progressBar.setVisibility(View.VISIBLE);
 
                 //googlePlay, mp3, pdf, apkを別アプリで開く
-                if(url.startsWith("https://play.google.com/") || url.startsWith("market://") || url.endsWith("mp3") || url.endsWith("pdf")
-                        || url.endsWith("apk"))
+                if(url.startsWith("https://play.google.com/") || url.startsWith("market://")
+                        || url.startsWith("http://www.slideshare.net/")
+                        || url.endsWith("mp3") || url.endsWith("pdf") || url.endsWith("apk")
+                        )
                 {
                     Uri uri = Uri.parse(url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -97,8 +101,6 @@ public class MainActivity extends Activity{
 
         });
 
-
-
         /*
         webView.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
@@ -127,15 +129,7 @@ public class MainActivity extends Activity{
                     intentNew.putExtra("url", url);
                     startActivity(intentNew);
                 }
-                /* else  //リンク以外をロングタップ時
-                {
-                    // 新しいViewで空白ページを開く
-                    Intent intentNew = new Intent(getApplicationContext(), MainActivity.class);
-                    intentNew.putExtra("url", "about:blank");
-                    startActivity(intentNew);
-                    showToast("about:blank", "short");
-                }
-                Log.d("MyBrowser", "setOnLongClickListener"); */
+                Log.d("MyBrowser", "setOnLongClickListener");
                 return true;  //onClickイベントを発生させない。テキストを選択しない。
             }
         });
@@ -144,7 +138,7 @@ public class MainActivity extends Activity{
         Boolean bJavascriptOn = pref.getBoolean("javascriptOn",true);
 
         WebSettings settings = webView.getSettings();
-        settings.setSupportMultipleWindows(false);  //trueではGoogleニュースのリンクが開けない
+        settings.setSupportMultipleWindows(false);  //trueではGoogleニュースのリンクが開けない/
         settings.setLoadsImagesAutomatically(true);
         //settings.setSupportZoom(true);
         //settings.setLightTouchEnabled(true);
@@ -221,21 +215,21 @@ public class MainActivity extends Activity{
         return super.onPrepareOptionsMenu(menu);
     }
 
-
     // メニューを選択した時の処理
     public boolean onMenuItemSelected(int featureId,MenuItem item){
         OptionMenu o = new OptionMenu();
-        String url = o.getUrl(item);
+        String url = o.getUrl(item, newsIndex);
 
         if(url != "") {
-            webView.loadUrl(url);
+            String[] a = url.split(",");
+            webView.loadUrl(a[0]);
+            newsIndex = Integer.parseInt(a[1]);
             return super.onMenuItemSelected(featureId, item);
         }
         else {
             switch (item.getItemId()) {
                 case SENDTO_MENU_ID:
                     if (entry.getTitle() != null)
-                        //Toast.makeText(getApplicationContext(), "追加:" + entry.getTitle(), Toast.LENGTH_SHORT).show();
                         showToast("追加:" + entry.getTitle(), "short");
 
                     Intent intent = new Intent(android.content.Intent.ACTION_SEND);
@@ -248,8 +242,6 @@ public class MainActivity extends Activity{
                         Uri uri = Uri.parse(entry.getUrl());
                         Intent intentBrowser = new Intent(Intent.ACTION_VIEW, uri);
                         Intent chooser = Intent.createChooser(intentBrowser, "ブラウザの選択");
-                        //intent.setType("text/plain");
-                        //intent.putExtra(Intent.EXTRA_TEXT, entry.getTitle());
                         startActivity(chooser);
                     }
                     break;
@@ -262,6 +254,7 @@ public class MainActivity extends Activity{
                     intentNew.putExtra("url", "about:blank");
                     startActivity(intentNew);
                     showToast("about:blank", "short");
+
                     break;
                 case ADD_BOOKMARK_MENU_ID:
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

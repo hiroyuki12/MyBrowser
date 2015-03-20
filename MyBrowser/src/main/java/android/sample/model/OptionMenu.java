@@ -28,6 +28,8 @@ public class OptionMenu {
 
     private static final int GOOGLE_MENU_ID = index++;
 
+    private static final int NEXT_NEWS_MENU_ID = index++;
+
     private static final int SUB_MENU_BLOG = index++;
     private static final int ANDROID_DEV_BLOG_SEARCH = index++;
     private static final int NEXUS7_BLOG_SEARCH = index++;
@@ -92,6 +94,8 @@ public class OptionMenu {
         // Gitマニュアル
         //subMenuManual.add(0, GIT_MANUAL, 0, R.string.git_manual);
 
+        // 次のニュース
+        menu.add(0, NEXT_NEWS_MENU_ID, 3, R.string.next_news);
 
         // 共有する
         menu.add(0, SENDTO_MENU_ID, 4, R.string.subMenu_sendto);
@@ -112,21 +116,35 @@ public class OptionMenu {
         subMenuOther.add(Menu.NONE, SHOW_SCALE, 2, R.string.show_scale);
 
         //追加
-        subMenuOther.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID, 3, R.string.add_bookmark);
+        subMenuOther.add(Menu.NONE,  ADD_BOOKMARK_MENU_ID,  3, R.string.add_bookmark);
         //参照
         subMenuOther.add(Menu.NONE, VIEW_BOOKMARK_MENU_ID, 4, R.string.view_bookmark);
 
         // 設定
-        //menu.add(0, SETTING_MENU_ID, 4, R.string.setting);
+        subMenuOther.add(Menu.NONE, SETTING_MENU_ID, 5, R.string.setting);
 
         // 閉じる
         menu.add(0, FINISH_MENU_ID, 8, R.string.close);
 
+
+
         return menu;
     }
 
-    public String getUrl(MenuItem item)
+    public String getUrl(MenuItem item, int newsIndex)
     {
+        String[] urlList = {""
+                , "http://www.nikkei.com/"
+                , "http://hatebu.net/"
+                , "http://news.nifty.com/"
+                , "http://k-tai.impress.co.jp/"
+                , "http://cloud.watch.impress.co.jp/"
+                , "http://www.itmedia.co.jp/"
+                , "http://japanese.engadget.com/"
+                , "http://jp.techcrunch.com/"
+                , "http://gigazine.net/"
+                        };
+
         String url = "";
 
         //switch (item.getItemId()) {
@@ -167,6 +185,14 @@ public class OptionMenu {
         else if(item.getItemId() == GOOGLE_MENU_ID) {
             url = "http://www.google.co.jp/";
         }
+        else if(item.getItemId() == NEXT_NEWS_MENU_ID) {
+            if(newsIndex + 1 >= urlList.length) {
+                newsIndex = 0;
+            }
+
+            newsIndex++;
+            url = urlList[newsIndex];// + "," + String.valueOf(newsIndex);
+        }
         else if(item.getItemId() == ANDROID_DEV_BLOG_SEARCH) {
             url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687";
         }
@@ -179,6 +205,13 @@ public class OptionMenu {
         else if(item.getItemId() == GIT_MANUAL) {
             url = "http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html";
         }
+
+        //if(item.getItemId() != NEXT_NEWS_MENU_ID)
+        //{
+            if(url != "") {
+                url = url + "," + String.valueOf(newsIndex);
+            }
+        //}
 
         return url;
     }

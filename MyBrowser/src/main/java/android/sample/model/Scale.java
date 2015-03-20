@@ -20,7 +20,6 @@ public class Scale {
                     || url.startsWith("http://www.yahoo.co.jp/")
                     || url.startsWith("https://github.com/")
                     || url.startsWith("http://japanese.engadget.com/")
-                    || url.startsWith("http://gigazine.net")
                     )
             {
                 scale = Constants.TABLET_SCALE_BIG;
@@ -28,6 +27,7 @@ public class Scale {
             else if(url.startsWith("http://anond.hatelabo.jp/") || url.startsWith("https://speakerdeck.com/")
                     || url.startsWith("http://www.forest.impress.co.jp/")
                     || url.startsWith("http://jp.techcrunch.com/")
+                    || url.startsWith("http://gigazine.net")
                     )
             {
                 scale = Constants.TABLET_SCALE_MIDDLE;
