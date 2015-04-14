@@ -126,12 +126,10 @@ public class OptionMenu {
         // 閉じる
         menu.add(0, FINISH_MENU_ID, 8, R.string.close);
 
-
-
         return menu;
     }
 
-    public String getUrl(MenuItem item, int newsIndex)
+    public String[] getUrl(MenuItem item, int newsIndex)
     {
         String[] urlList = {""
                 , "http://www.nikkei.com/"
@@ -145,45 +143,54 @@ public class OptionMenu {
                 , "http://gigazine.net/"
                         };
 
-        String url = "";
+        String[] url = new String[2];
+        url[0] = "";
+        url[1] = String.valueOf(newsIndex);
 
-        //switch (item.getItemId()) {
-        //  case NIKKEI_NEWS_MENU_ID :
         if(item.getItemId() == NIKKEI_NEWS_MENU_ID) {
-            url = "http://www.nikkei.com/";
+            url[0] = "http://www.nikkei.com/";
+            newsIndex = 1;
         }
         else if(item.getItemId() == GOOGLE_NEWS_MENU_ID) {
-            url = "http://news.google.co.jp/";
+            url[0] = "http://news.google.co.jp/";
         }
         else if(item.getItemId() == HOTENTRY_MENU_ID) {
-            url = "http://hatebu.net/";
+            url[0] = "http://hatebu.net/";
+            newsIndex = 2;
         }
         else if(item.getItemId() == NIFTY_NEWS_MENU_ID) {
-            url = "http://news.nifty.com/";
+            url[0] = "http://news.nifty.com/";
+            newsIndex = 3;
         }
         else if(item.getItemId() == KETAI_MENU_ID) {
-            url = "http://k-tai.impress.co.jp/";
+            url[0] = "http://k-tai.impress.co.jp/";
+            newsIndex = 4;
         }
         else if(item.getItemId() == CLOUD_MENU_ID) {
-            url = "http://cloud.watch.impress.co.jp/";
+            url[0] = "http://cloud.watch.impress.co.jp/";
+            newsIndex = 5;
         }
         else if(item.getItemId() == ITMEDIA_MENU_ID) {
-            url = "http://www.itmedia.co.jp/";
+            url[0] = "http://www.itmedia.co.jp/";
+            newsIndex = 6;
         }
         else if(item.getItemId() == ENGADGET_MENU_ID) {
-            url = "http://japanese.engadget.com/";
+            url[0] = "http://japanese.engadget.com/";
+            newsIndex = 7;
         }
         else if(item.getItemId() == TECH_CRUNCH_MENU_ID) {
-            url = "http://jp.techcrunch.com/";
+            url[0] = "http://jp.techcrunch.com/";
+            newsIndex = 8;
         }
         else if(item.getItemId() == GIGAZINE) {
-            url = "http://gigazine.net/";
+            url[0] = "http://gigazine.net/";
+            newsIndex = 9;
         }
         else if(item.getItemId() == MYBROWSER_MENU_ID) {
-            url = "https://github.com/hiroyuki12/MyBrowser/commits/master";
+            url[0] = "https://github.com/hiroyuki12/MyBrowser/commits/master";
         }
         else if(item.getItemId() == GOOGLE_MENU_ID) {
-            url = "http://www.google.co.jp/";
+            url[0] = "http://www.google.co.jp/";
         }
         else if(item.getItemId() == NEXT_NEWS_MENU_ID) {
             if(newsIndex + 1 >= urlList.length) {
@@ -191,27 +198,24 @@ public class OptionMenu {
             }
 
             newsIndex++;
-            url = urlList[newsIndex];// + "," + String.valueOf(newsIndex);
+            url[0] = urlList[newsIndex];// + "," + String.valueOf(newsIndex);
         }
         else if(item.getItemId() == ANDROID_DEV_BLOG_SEARCH) {
-            url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687";
+            url[0] = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#q=android+%E9%96%8B%E7%99%BA&hl=ja&tbo=d&source=lnms&tbm=blg&sa=X&ei=e7ruULndN8eHkQXav4BQ&ved=0CBEQ_AUoAA&bav=on.2,or.r_gc.r_pw.r_qf.&bvm=bv.1357700187,d.dGI&fp=4a7b87b2fcf8f3fc&biw=1280&bih=687";
         }
         else if(item.getItemId() == NEXUS7_BLOG_SEARCH) {
-            url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&gs_rn=1&gs_ri=serp&gs_is=1&pq=android%20%E9%96%8B%E7%99%BA&cp=4&gs_id=19&xhr=t&q=nexus7&es_nrs=true&pf=p&tbo=d&tbm=blg&sclient=psy-ab&oq=nexu&gs_l=&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=629";
+            url[0]= "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&gs_rn=1&gs_ri=serp&gs_is=1&pq=android%20%E9%96%8B%E7%99%BA&cp=4&gs_id=19&xhr=t&q=nexus7&es_nrs=true&pf=p&tbo=d&tbm=blg&sclient=psy-ab&oq=nexu&gs_l=&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=629";
         }
         else if(item.getItemId() == ANDROID_BLOG_SEARCH) {
-            url = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&tbo=d&tbm=blg&sclient=psy-ab&q=android&oq=android&gs_l=serp.3..0l8.414037.415041.4.415245.7.5.0.2.2.1.605.1488.1j1j1j0j1j1.5.0...0.0...1c.1j4.ZkHRPiMpKKI&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=623";
+            url[0] = "https://www.google.co.jp/search?q=android+%E9%96%8B%E7%99%BA#hl=ja&tbo=d&tbm=blg&sclient=psy-ab&q=android&oq=android&gs_l=serp.3..0l8.414037.415041.4.415245.7.5.0.2.2.1.605.1488.1j1j1j0j1j1.5.0...0.0...1c.1j4.ZkHRPiMpKKI&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.&fp=13d9d789849eb92e&biw=1280&bih=623";
         }
         else if(item.getItemId() == GIT_MANUAL) {
-            url = "http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html";
+            url[0] = "http://cdn8.atwikiimg.com/git_jp/pub/git-manual-jp/Documentation/user-manual.html";
         }
 
-        //if(item.getItemId() != NEXT_NEWS_MENU_ID)
-        //{
-            if(url != "") {
-                url = url + "," + String.valueOf(newsIndex);
-            }
-        //}
+        if(url[0] != "") {
+            url[1] = String.valueOf(newsIndex);
+        }
 
         return url;
     }

@@ -36,7 +36,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MainActivity extends Activity{
+public class MainActivity extends Activity {
 
     private WebView webView;
     private Entry entry = new Entry();
@@ -46,9 +46,9 @@ public class MainActivity extends Activity{
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);   //既存のコード
         entry.setXlarge(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);  //アクションバーを非表示にする
-        super.onCreate(savedInstanceState);   //既存のコード
         setContentView(R.layout.activity_main);  //既存のコード
         webView = (WebView) findViewById(R.id.webview);  // Webビューの作成
         Log.d("MyBrowser", "onCreate(1)");
@@ -64,11 +64,10 @@ public class MainActivity extends Activity{
                 progressBar.setVisibility(View.VISIBLE);
 
                 //googlePlay, mp3, pdf, apkを別アプリで開く
-                if(url.startsWith("https://play.google.com/") || url.startsWith("market://")
+                if (url.startsWith("https://play.google.com/") || url.startsWith("market://")
                         || url.startsWith("http://www.slideshare.net/")
                         || url.endsWith("mp3") || url.endsWith("pdf") || url.endsWith("apk")
-                        )
-                {
+                        ) {
                     Uri uri = Uri.parse(url);
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
@@ -135,7 +134,7 @@ public class MainActivity extends Activity{
         });
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean bJavascriptOn = pref.getBoolean("javascriptOn",true);
+        Boolean bJavascriptOn = pref.getBoolean("javascriptOn", true);
 
         WebSettings settings = webView.getSettings();
         settings.setSupportMultipleWindows(false);  //trueではGoogleニュースのリンクが開けない/
@@ -143,50 +142,47 @@ public class MainActivity extends Activity{
         //settings.setSupportZoom(true);
         //settings.setLightTouchEnabled(true);
 
-        if(entry.getXlarge())
-        {
+        if (entry.getXlarge()) {
             settings.setBuiltInZoomControls(true);  // 読み込んだWebページをWebView上で拡大・縮小（ピンチイン・アウト）可能に
             //settings.setBuiltInZoomControls(false);  // メモリリーク対策
             // スクロールした時に、ズームボタンが表示
         }
         settings.setJavaScriptEnabled(bJavascriptOn);  //javascript有効化
-
-        Bundle extras=getIntent().getExtras();
+        Bundle extras = getIntent().getExtras();
         // 他のアプリでURLをタップした時の処理(暗黙的インテント経由で起動)
-        if (Intent.ACTION_VIEW.equals(getIntent().getAction()) ){  //暗黙的インテント
+        if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {  //暗黙的インテント
             String url = getIntent().getDataString();
             webView.loadUrl(url);
-        }
-        else if (extras!=null) {  // MyBrowserでリンクを長押しした時の処理
+        } else if (extras != null) {  // MyBrowserでリンクを長押しした時の処理
             String url = extras.getString("url");
             webView.loadUrl(url);
-        }
-        else
-        {
+        } else {
             String url = "http://www.nikkei.com/";
-            /*
-                webView.getSettings().setLoadWithOverviewMode(true);    //Overviewモードはページが画面に収まるように自動で縮小します
-                webView.getSettings().setUseWideViewPort(true);
-
-                webView.getSettings().setLoadWithOverviewMode(false);
-                webView.getSettings().setUseWideViewPort(false);
-            */
+                         /*
+                 webView.getSettings().setLoadWithOverviewMode(true);    //Overviewモードはページが画面に収まるように自動で縮小します
+                 webView.getSettings().setUseWideViewPort(true);
+-
+            webView.getSettings().setLoadWithOverviewMode(false);
+            webView.getSettings().setUseWideViewPort(false);
+        */
             webView.loadUrl(url);
             Log.d("MyBrowser", "start(2)");
         }
     }
 
+
     //戻るボタンで前のページに戻る
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //戻るボタンで前のページに戻る
-        if(keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
             webView.goBack();
             return true;
         }
         Log.d("MyBrowser", "onKeyDown");
         return super.onKeyDown(keyCode, event);
     }
+
 
     // オプション・メニューを作成
     private static final int SENDTO_MENU_ID = 1;
@@ -198,6 +194,7 @@ public class MainActivity extends Activity{
     private static final int SETTING_MENU_ID = 7;
     private static final int FINISH_MENU_ID = 8;
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -208,6 +205,7 @@ public class MainActivity extends Activity{
         return true;
     }
 
+
     // Option Menu が表示される時の動作
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -215,18 +213,18 @@ public class MainActivity extends Activity{
         return super.onPrepareOptionsMenu(menu);
     }
 
-    // メニューを選択した時の処理
-    public boolean onMenuItemSelected(int featureId,MenuItem item){
-        OptionMenu o = new OptionMenu();
-        String url = o.getUrl(item, newsIndex);
 
-        if(url != "") {
-            String[] a = url.split(",");
+    // メニューを選択した時の処理
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        OptionMenu o = new OptionMenu();
+        String[] url = o.getUrl(item, newsIndex);
+
+        if (url[0] != "") {
+            String[] a = url[0].split(",");
             webView.loadUrl(a[0]);
             newsIndex = Integer.parseInt(a[1]);
             return super.onMenuItemSelected(featureId, item);
-        }
-        else {
+        } else {
             switch (item.getItemId()) {
                 case SENDTO_MENU_ID:
                     if (entry.getTitle() != null)
@@ -333,6 +331,7 @@ public class MainActivity extends Activity{
         return super.onMenuItemSelected(featureId, item);
     }
 
+
     // ブックマーク画面から戻ってきた時の処理
     // startActivityForResult で起動させたアクティビティが
     // finish() により破棄されたときにコールされる
@@ -367,16 +366,12 @@ public class MainActivity extends Activity{
     }
 
     // トースト表示
-    public void showToast(String Message, String Length)
-    {
-        if(Length == "long")
-        {
+    public void showToast(String Message, String Length) {
+        if (Length == "long") {
             Toast toast = Toast.makeText(this, Message, Toast.LENGTH_LONG);
             toast.setGravity(Gravity.BOTTOM, 0, 0);
             toast.show();
-        }
-        else
-        {
+        } else {
             Toast toast = Toast.makeText(this, Message, Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.BOTTOM, 0, 0);
             toast.show();
